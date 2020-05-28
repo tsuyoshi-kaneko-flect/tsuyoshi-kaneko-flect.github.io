@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URLデコード</title>
+    <script>
+
+        const urlDecode = (e) => {
+            const source = document.querySelector('#source').value;
+            document.querySelector('#result').value = decodeURIComponent(source);
+        };
+        window.onload = () => {
+            document.querySelector('#execute').onclick = urlDecode;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>URLデコード</h1>
+    </header>
+    <section id="source-section">
+        <h2>URLデコード元URL</h2>
+        <div>
+            <textarea name="source" id="source" cols="100" rows="10"></textarea>
+        </div>
+    </section>
+    <section id="button-section">
+        <button id="execute">URLデコード</button>
+    </section>
+    <section>
+        <h2 id="result-section">デコード結果</h2>
+        <div>
+            <textarea name="result" id="result" cols="100" rows="10">ここにURLデコード結果が表示されます</textarea>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>
