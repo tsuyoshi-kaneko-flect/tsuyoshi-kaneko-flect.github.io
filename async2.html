@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script>
+        const setAfterOneSecond = (str) => {
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    $('#text').val($('#text').val() + 'hello');
+                    resolve();
+                }, 1000);
+            });
+
+            return p;
+        }
+
+        $(document).ready(() => {
+            $('#btn').on('click', () => {
+                // 1秒後に文字列をセットする
+                setAfterOneSecond('hello').then(function(){
+                    // 即座に文字列をセットする
+                    $('#text').val($('#text').val() + 'world');      
+                })
+            })
+        });
+    </script>
+</head>
+<body>
+    <input type="text" name="text" id="text">
+    <button id="btn">ボタン</button>
+</body>
+</html>

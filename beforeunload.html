@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script>
+            window.onbeforeunload = function(e) {
+                e.preventDefault();
+                return true;
+            }
+
+            function move(){
+                window.location.href='http://example.com/';
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <form action="http://example.com/">
+            <ul>
+                <li>
+                    <a href="http://example.com/">リンク</a>
+                </li>
+                <li>
+                    <input type="button" value="window.location.href書き換え" onclick="return move();" />
+                </li>
+                <li>
+                    <input type="submit" value='<input type="submit">でformをsubmit' />
+                </li>
+                <li>
+                    <input type="button" value="document.forms[0].submit()を実行" onclick="document.forms[0].submit();" />
+                </li>
+            </ul>
+        </form>
+    </body>
+</html>
