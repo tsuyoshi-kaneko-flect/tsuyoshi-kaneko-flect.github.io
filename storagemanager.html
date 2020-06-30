@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StorageManager.estimate()のテストページ</title>
+    <script>
+        window.onload = () => {
+            document.querySelector('#execute').onclick = () => {
+                navigator.storage.estimate().then((estimate) => {
+                    document.querySelector('#usage').innerHTML = estimate.usage;
+                    document.querySelector('#quota').innerHTML = estimate.quota;
+                })
+            };
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>StorageManager.estimate()のテストページ</h1>
+    </header>
+    <section id="button-section">
+        <button id="execute">StorageManager.estimate()実行</button>
+    </section>
+    <section>
+        <h2 id="result-section">結果</h2>
+        <div>
+            <dl>
+                <dt>usage</dt>
+                <dd id="usage">???</dd>
+                <dt>quota</dt>
+                <dd id="quota">???</dd>
+            </dl>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>
