@@ -5,25 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>クリップボード読み込み</title>
     <script>
-
-        const readText = (e) => {
-            navigator.clipboard.readText().then((clipText) => {
-                document.querySelector("#readText_result").value = clipText;
-            });
-        };
         const read = async (e) => {
+            // empty
+            document.querySelector("#readText_result").value = "";
+            document.querySelector("#read_result").value = "";
+
+            // readText
+            const clipText = await navigator.clipboard.readText();
+            document.querySelector("#readText_result").value = clipText;
+
+            // read
             const clipboardItems = await navigator.clipboard.read();
 
             for (const clipboardItem of clipboardItems) {
-              for (const type of clipboardItem.types) {
-                const blob = await clipboardItem.getType(type);
-                document.querySelector("#read_result").value = blob;
-              }
-            }        
+                for (const type of clipboardItem.types) {
+                    const blob = await clipboardItem.getType(type);
+                    document.querySelector("#read_result").value += `${type}: ${blob}\n`;
+                }
+            }
         };
         window.onload = () => {
-            document.querySelector('#readText').onclick = readText;
-            document.querySelector('#read').onclick = read;
+            document.querySelector('#button').onclick = read;
         }
     </script>
 </head>
@@ -32,14 +34,13 @@
         <h1>クリップボード</h1>
     </header>
     <section id="button-section">
-        <button id="readText">readText</button>
-        <button id="read">read</button>
+        <button id="button">クリップボード読み込み</button>
     </section>
     <section>
-        <h2 id="result-section">取得結果</h2>
+        <h2 id="result-section">読み込み結果</h2>
         <div>
-            <textarea name="readText_result" id="readText_result" cols="250" rows="20" placeholder="readWrite結果がここに表示されます"></textarea>
-            <textarea name="read_result" id="read_result" cols="250" rows="20" placeholder="read結果がここに表示されます"></textarea>
+            <textarea name="readText_result" id="readText_result" cols="200" rows="10" placeholder="readWrite結果がここに表示されます"></textarea>
+            <textarea name="read_result" id="read_result" cols="200" rows="10" placeholder="read結果がここに表示されます"></textarea>
         </div>
     </section>
     <footer></footer>
