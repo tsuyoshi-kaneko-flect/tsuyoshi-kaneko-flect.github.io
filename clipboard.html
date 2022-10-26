@@ -38,11 +38,18 @@
     </section>
     <section>
         <h2 id="result-section">読み込み結果</h2>
-        <div>
-            <textarea name="readText_result" id="readText_result" cols="200" rows="10" placeholder="readWrite結果がここに表示されます"></textarea>
-            <textarea name="read_result" id="read_result" cols="200" rows="10" placeholder="read結果がここに表示されます"></textarea>
-        </div>
+        <h3>readText(Stringを返す)</h3>
+        <textarea name="readText_result" id="readText_result" cols="200" rows="10" placeholder="readWrite結果がここに表示されます"></textarea>
+        <h3>read(MIMEとBlobの組み合わせを返す)</h3>
+        <textarea name="read_result" id="read_result" cols="200" rows="10" placeholder="read結果がここに表示されます"></textarea>
     </section>
-    <footer></footer>
+    <footer>
+        参考MDNリンク集
+        <ul>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/readText">readText</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Clipboard/read">read</a></li>
+            <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ClipboardItem">ClipboardItem</a></li>
+        </ul>
+    </footer>
 </body>
 </html>
