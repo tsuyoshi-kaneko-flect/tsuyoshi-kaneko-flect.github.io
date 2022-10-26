@@ -11,10 +11,15 @@
                 document.querySelector("#readText_result").value = clipText;
             });
         };
-        const read = (e) => {
-            navigator.clipboard.read().then((clipText) => {
-                document.querySelector("#read_result").value = clipText;
-            });
+        const read = async (e) => {
+            const clipboardItems = await navigator.clipboard.read();
+
+            for (const clipboardItem of clipboardItems) {
+              for (const type of clipboardItem.types) {
+                const blob = await clipboardItem.getType(type);
+                document.querySelector("#read_result").value = blob;
+              }
+            }        
         };
         window.onload = () => {
             document.querySelector('#readText').onclick = readText;
