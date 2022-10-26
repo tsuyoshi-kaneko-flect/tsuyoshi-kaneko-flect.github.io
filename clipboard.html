@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>クリップボード読み込み</title>
+    <script>
+
+        const readText = (e) => {
+            navigator.clipboard.readText().then((clipText) => {
+                document.querySelector("#readText_result").value = clipText;
+            });
+        };
+        const read = (e) => {
+            navigator.clipboard.read().then((clipText) => {
+                document.querySelector("#read_result").value = clipText;
+            });
+        };
+        window.onload = () => {
+            document.querySelector('#readText').onclick = readText;
+            document.querySelector('#read').onclick = read;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>クリップボード</h1>
+    </header>
+    <section id="button-section">
+        <button id="readText">readText</button>
+        <button id="read">read</button>
+    </section>
+    <section>
+        <h2 id="result-section">取得結果</h2>
+        <div>
+            <textarea name="readText_result" id="readText_result" cols="250" rows="20" placeholder="readWrite結果がここに表示されます"></textarea>
+            <textarea name="read_result" id="read_result" cols="250" rows="20" placeholder="read結果がここに表示されます"></textarea>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>
