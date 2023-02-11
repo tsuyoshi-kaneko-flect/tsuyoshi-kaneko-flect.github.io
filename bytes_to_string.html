@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IntelliJのデバッガから取得したByte[]の値を文字列に変換</title>
+    <script>
+
+        const bytesToString = (e) => {
+            document.querySelector('#result').value = '';
+            document.querySelector('#source').value
+                .replaceAll(',', '')
+                .replaceAll('[', '')
+                .replaceAll(']', '')
+                .split(' ')
+                .forEach(byte => {
+                    const byteNumber = Number.parseInt(byte);
+                    document.querySelector('#result').value += String.fromCharCode(byteNumber);
+                })
+            ;
+        };
+
+        window.onload = () => {
+            document.querySelector('#source').oninput = bytesToString;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>IntelliJのデバッガから取得したByte[]の値を文字列に変換</h1>
+    </header>
+    <section id="source-section">
+        <h2>Byte[]文字列</h2>
+        <div>
+            <textarea name="source" id="source" cols="100" rows="10" placeholder="[108, 97, 115, 116, 65, 99, 99, 101, 115, 115, 101, 100, 84, 105, 109, 101]"></textarea>
+        </div>
+    </section>
+    <section>
+        <h2 id="result-section">文字列</h2>
+        <div>
+            <textarea name="result" id="result" cols="100" rows="10" placeholder="変換結果の文字列がここに表示されます"></textarea>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>
