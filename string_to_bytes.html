@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>逆バージョン：文字列をByte[]に変換</title>
+    <script>
+
+        const bytesToString = (e) => {
+            document.querySelector('#result').value = '';
+
+            source = document.querySelector('#source').value;
+            if (!source) return;
+
+            for (let i = 0; i < source.length; i++) {
+                document.querySelector('#result').value += source.charCodeAt(i) + (',');
+            }
+        };
+
+        window.onload = () => {
+            document.querySelector('#source').oninput = bytesToString;
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>逆バージョン：文字列をByte[]に変換</h1>
+    </header>
+    <section id="source-section">
+        <h2>文字列</h2>
+        <div>
+            <textarea name="source" id="source" cols="100" rows="10" placeholder="文字列"></textarea>
+        </div>
+    </section>
+    <section>
+        <h2 id="result-section">Byte[]の値</h2>
+        <div>
+            <textarea name="result" id="result" cols="100" rows="10" placeholder="Byte[]の値がここに表示されます"></textarea>
+        </div>
+    </section>
+    <footer></footer>
+</body>
+</html>
