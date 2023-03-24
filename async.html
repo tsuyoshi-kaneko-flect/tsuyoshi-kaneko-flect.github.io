@@ -6,22 +6,56 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
     <script>
-        const setAfterOneSecond = (str) => {
+        const setAfterOneSecond1 = (str) => {
             setTimeout(() => {
-                $('#text').val($('#text').val() + 'hello');
+                $('#text1').val($('#text1').val() + 'hello');
             }, 1000);
         }
 
+        const setAfterOneSecond2 = (str) => {
+            const p = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    $('#text2').val($('#text2').val() + 'hello');
+                    resolve();
+                }, 1000);
+            });
+
+            return p;
+        }
+
         $(document).ready(() => {
-            $('#btn').on('click', () => {
-                setAfterOneSecond('hello');
-                $('#text').val($('#text').val() + 'world');      
+            $('#btn1').on('click', () => {
+                setAfterOneSecond1('hello');
+                $('#text1').val($('#text1').val() + 'world');      
+            })
+
+            $('#btn2').on('click', () => {
+                // 1秒後に文字列をセットする
+                setAfterOneSecond2('hello').then(function(){
+                    // 即座に文字列をセットする
+                    $('#text2').val($('#text2').val() + 'world');      
+                })
             })
         });
     </script>
 </head>
 <body>
-    <input type="text" name="text" id="text">
-    <button id="btn">ボタン</button>
+    <h1>非同期とは何かを体感するページ</h1>
+    <p>細かいことはソースを見て下さい→ <a href="https://github.com/tsuyoshi-kaneko-flect/tsuyoshi-kaneko-flect.github.io/blob/master/async.html">https://github.com/tsuyoshi-kaneko-flect/tsuyoshi-kaneko-flect.github.io/blob/master/async.html</a></p>
+
+    <table>
+        <tr>
+            <td>
+                <input type="text" name="text1" id="text1">
+                <button id="btn1">待たないボタン</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text" name="text2" id="text2">
+                <button id="btn2">Promiseの解決を待つボタン</button>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
